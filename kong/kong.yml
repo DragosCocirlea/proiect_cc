@@ -15,6 +15,13 @@ services:
         paths:
           - /figaro
 
+  - name: db-adminer
+    url: http://adminer:8080
+    routes:
+      - name: adminer-service
+        paths:
+          - /adminer
+
   # - name: db-adminer
   #   url: http://lab4-cluster_adminer:8080
   #   routes:

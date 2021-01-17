@@ -6,17 +6,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     networks:
-      - internal
+      - server
+      - database-admin
 
   server:
     build: ./server
     container_name: server
-    ports:
-      - 5001:5000
     depends_on:
       - dbserver
     networks:
       - internal
+      - server
 
   dbauth:
     image: mysql:5.7
@@ -24,18 +24,18 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     networks:
-      - internal
+      - auth
+      - database-admin
 
   auth:
     build: ./auth
     container_name: auth
-    ports:
-      - 5000:5000
     depends_on:
       - dbauth
       - server
     networks:
       - internal
+      - auth
 
   kong:
     image: kong:latest
@@ -55,5 +55,14 @@ services:
     networks:
       - internal
 
+  adminer:
+    image: adminer
+    networks:
+      - database-admin
+      - internal
+
 networks:
   internal:
+  server:
+  auth:
+  database-admin:
