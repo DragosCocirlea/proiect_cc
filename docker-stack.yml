@@ -1,63 +1,85 @@
-version: "3.7"
+version: "3.8"
 services:
-
   dbserver:
     image: mysql:5.7
-    hostname: dbserver
+    container_name: dbserver
     environment:
       MYSQL_ROOT_PASSWORD: root
+    networks:
+      - server
+      - database-admin
     volumes:
       - dbserver_volume:/var/lib/mysql/
 
   server:
-    image: shinr3x/figaro:server
-    hostname: server
-    ports:
-      - 5001:5000
+    build: ./server
+    container_name: server
     depends_on:
       - dbserver
+    networks:
+      - internal
+      - server
     deploy:
       restart_policy:
         condition: on-failure
 
   dbauth:
     image: mysql:5.7
-    hostname: dbauth
+    container_name: dbauth
     environment:
       MYSQL_ROOT_PASSWORD: root
+    networks:
+      - auth
+      - database-admin
     volumes:
       - dbauth_volume:/var/lib/mysql/
-    
+
   auth:
-    image: shinr3x/figaro:auth
-    hostname: auth
-    ports:
-      - 5000:5000
+    build: ./auth
+    container_name: auth
     depends_on:
       - dbauth
       - server
+    networks:
+      - internal
+      - auth
     deploy:
       restart_policy:
         condition: on-failure
 
-  metrics:
-    image: prom/prometheus:latest
-    hostname: metrics
+  kong:
+    image: kong:latest
     volumes:
-      - ./prometheus/:/etc/prometheus/
-      - prometheus_volume:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - ./kong:/usr/local/kong/declarative
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
     ports:
-      - 9090:9090
-    depends_on:
-      - auth
+      - 8001:8000
+      - 8444:8443
+    networks:
+      - internal
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
+  adminer:
+    image: adminer
+    networks:
+      - database-admin
+      - internal
+
+networks:
+  internal:
+  server:
+  auth:
+  database-admin:
 
 volumes:
   dbauth_volume: {}
   dbserver_volume: {}
-  prometheus_volume: {}

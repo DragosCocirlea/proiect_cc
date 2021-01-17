@@ -19,9 +19,6 @@ services:
     networks:
       - internal
       - server
-    deploy:
-      restart_policy:
-        condition: on-failure
 
   dbauth:
     image: mysql:5.7
@@ -43,9 +40,6 @@ services:
     networks:
       - internal
       - auth
-    deploy:
-      restart_policy:
-        condition: on-failure
 
   kong:
     image: kong:latest
@@ -64,9 +58,6 @@ services:
       - 8444:8443
     networks:
       - internal
-    deploy:
-      placement:
-        constraints: [node.role == manager]
 
   adminer:
     image: adminer
