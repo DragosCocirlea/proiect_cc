@@ -43,7 +43,7 @@ class UserData(Resource):
     def delete(self):
         try:
             user_email = validateJWT(request)
-        except e:
+        except Exception as e:
             return {'msg': str(e)}, 401
         
         try:
@@ -62,7 +62,7 @@ class AppointmentData(Resource):
     def get(self):
         try:
             user_email = validateJWT(request)
-        except e:
+        except Exception as e:
             return {'msg': str(e)}, 401
 
         appointments_json = []
@@ -93,7 +93,7 @@ class AppointmentData(Resource):
     def post(self):
         try:
             user_email = validateJWT(request)
-        except e:
+        except Exception as e:
             return {'msg': str(e)}, 401
 
         req_json = request.get_json()
@@ -118,7 +118,7 @@ class AppointmentData(Resource):
     def delete(self):
         try:
             user_email = validateJWT(request)
-        except e:
+        except Exception as e:
             return {'msg': str(e)}, 401
 
         req_json = request.get_json()
@@ -192,7 +192,7 @@ class TimeData(Resource):
     def post(self):
         try:
             user_email = validateJWT(request)
-        except e:
+        except Exception as e:
             return {'msg': str(e)}, 401
 
         req_json = request.get_json()
