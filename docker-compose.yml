@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.8"
 services:
   dbserver:
     image: mysql:5.7
@@ -8,6 +8,8 @@ services:
     networks:
       - server
       - database-admin
+    volumes:
+      - dbserver_volume:/var/lib/mysql/
 
   server:
     build: ./server
@@ -17,6 +19,9 @@ services:
     networks:
       - internal
       - server
+    deploy:
+      restart_policy:
+        condition: on-failure
 
   dbauth:
     image: mysql:5.7
@@ -26,6 +31,8 @@ services:
     networks:
       - auth
       - database-admin
+    volumes:
+      - dbauth_volume:/var/lib/mysql/
 
   auth:
     build: ./auth
@@ -36,6 +43,9 @@ services:
     networks:
       - internal
       - auth
+    deploy:
+      restart_policy:
+        condition: on-failure
 
   kong:
     image: kong:latest
@@ -54,6 +64,9 @@ services:
       - 8444:8443
     networks:
       - internal
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
   adminer:
     image: adminer
@@ -66,3 +79,7 @@ networks:
   server:
   auth:
   database-admin:
+
+volumes:
+  dbauth_volume: {}
+  dbserver_volume: {}
