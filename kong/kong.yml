@@ -15,6 +15,13 @@ services:
         paths:
           - /figaro
 
+  - name: trends
+    url: http://trends:5000/
+    routes:
+      - name: trends_root
+        paths:
+          - /trends
+
   # - name: db-adminer
   #   url: http://lab4-cluster_adminer:8080
   #   routes:
