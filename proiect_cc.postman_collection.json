@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "bfdb85b0-06d2-48a1-b2a9-0c0747d00db3",
+		"name": "proiect_cc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\":\"dragos.cocirlea@gmail.com\",\r\n\t\"password\":\"akaaka\",\r\n\t\"name\":\"Dragos Cocirlea\",\r\n\t\"phone\":\"0745123123\",\r\n\t\"birthday\":\"2020-01-01\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/auth/registration",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"auth",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\":\"dragos.cocirlea@gmail.com\",\r\n\t\"password\":\"akaaka\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/auth/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTA4OTg4NTYsIm5iZiI6MTYxMDg5ODg1NiwianRpIjoiNWIxZTJmMDQtNDhlZi00MGJlLWJmNGItN2IxZjU1ZGQzNmMwIiwiZXhwIjoxNjEzNDkwODU2LCJpZGVudGl0eSI6ImRyYWdvcy5jb2NpcmxlYUBnbWFpbC5jb20iLCJ0eXBlIjoicmVmcmVzaCJ9.lun36ZLZT1TBkGzGcNZ01US7XDzUvKiqwCKS424fsKY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8001/auth/token/refresh",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"auth",
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout access",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTA4OTkwMDksIm5iZiI6MTYxMDg5OTAwOSwianRpIjoiNjJhNzg5NjQtZTQzMy00ZjBkLTg1NGEtYWMwZTA0NTQ4NGZiIiwiZXhwIjoxNjEwODk5OTA5LCJpZGVudGl0eSI6ImRyYWdvcy5jb2NpcmxlYUBnbWFpbC5jb20iLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.JqY2JG2QjnhHUCzpdunrpzm_UdZYJpWvBm55Os_fL_4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8001/auth/logout/access",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"auth",
+						"logout",
+						"access"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTA4OTg4NTYsIm5iZiI6MTYxMDg5ODg1NiwianRpIjoiNWIxZTJmMDQtNDhlZi00MGJlLWJmNGItN2IxZjU1ZGQzNmMwIiwiZXhwIjoxNjEzNDkwODU2LCJpZGVudGl0eSI6ImRyYWdvcy5jb2NpcmxlYUBnbWFpbC5jb20iLCJ0eXBlIjoicmVmcmVzaCJ9.lun36ZLZT1TBkGzGcNZ01US7XDzUvKiqwCKS424fsKY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8001/auth/logout/refresh",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"auth",
+						"logout",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search barbershop - default",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"criteria\" : \"default\",\r\n\t\"name\" : \"o\",\r\n\t\"coordX\" : 44.44,\r\n\t\"coordY\" : 26.04\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/barbershop",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"barbershop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search barbershop - name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"criteria\" : \"name\",\r\n\t\"name\" : \"barber\",\r\n\t\"coordX\" : 44.44,\r\n\t\"coordY\" : 26.04\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/barbershop",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"barbershop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search barbershop - rating",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"criteria\" : \"rating\",\r\n\t\"name\" : \"barber\",\r\n\t\"coordX\" : 44.44,\r\n\t\"coordY\" : 26.04\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/barbershop",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"barbershop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search barbershop - distance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"criteria\" : \"distance\",\r\n\t\"name\" : \"barber\",\r\n\t\"coordX\" : 44.44,\r\n\t\"coordY\" : 26.04\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/barbershop",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"barbershop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search barbers and services",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"bbs_id\" : 1\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/barbers_services",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"barbers_services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search time",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTA4OTk0NjksIm5iZiI6MTYxMDg5OTQ2OSwianRpIjoiZDA4ODE5MWYtNmQ3Yy00NjRmLTk1OTItMTMzMWMxYTJkMmEyIiwiZXhwIjoxNjEwOTAwMzY5LCJpZGVudGl0eSI6ImRyYWdvcy5jb2NpcmxlYUBnbWFpbC5jb20iLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.nQoKvBRf7qHfLMeKVCpxyxZhbNfZ30nbOkV0cMPSKHw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"barber_id\" : 1,\r\n\t\"date\" : \"01-Feb-2021\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/time",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTA4OTg4NTYsIm5iZiI6MTYxMDg5ODg1NiwianRpIjoiNjU5NjZmNWMtZmNmYS00ZDk1LWJiYmYtOWIzNThmMTY3YzY0IiwiZXhwIjoxNjEwODk5NzU2LCJpZGVudGl0eSI6ImRyYWdvcy5jb2NpcmxlYUBnbWFpbC5jb20iLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.rLtdTtYSo6aBneose3wJ_zJffn90AM3mvC-V_Q9n4mg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"barber_id\" : 8,\r\n\t\"service_id\" : 8,\r\n\t\"date\" : \"01-Aug-2021\",\r\n\t\"time\" : \"12:30\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/appointment",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get appointments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTA4OTk0NjksIm5iZiI6MTYxMDg5OTQ2OSwianRpIjoiZDA4ODE5MWYtNmQ3Yy00NjRmLTk1OTItMTMzMWMxYTJkMmEyIiwiZXhwIjoxNjEwOTAwMzY5LCJpZGVudGl0eSI6ImRyYWdvcy5jb2NpcmxlYUBnbWFpbC5jb20iLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.nQoKvBRf7qHfLMeKVCpxyxZhbNfZ30nbOkV0cMPSKHw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/appointment",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTA4OTk0NjksIm5iZiI6MTYxMDg5OTQ2OSwianRpIjoiZDA4ODE5MWYtNmQ3Yy00NjRmLTk1OTItMTMzMWMxYTJkMmEyIiwiZXhwIjoxNjEwOTAwMzY5LCJpZGVudGl0eSI6ImRyYWdvcy5jb2NpcmxlYUBnbWFpbC5jb20iLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.nQoKvBRf7qHfLMeKVCpxyxZhbNfZ30nbOkV0cMPSKHw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"appointment_id\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8001/figaro/appointment",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"figaro",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
