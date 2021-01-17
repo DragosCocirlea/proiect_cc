@@ -9,7 +9,7 @@ import json
 def validateJWT(request):
     resp = requests.post('http://auth:5000/token/decode', headers = request.headers)
     response = json.loads(resp.text)
-    if 'user_email' not response:
+    if 'user_email' not in response:
             raise Exception('Invalid token')
     
     return response['user_email']
