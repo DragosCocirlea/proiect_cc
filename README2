@@ -1,0 +1,16 @@
+Tabelele din baza de date de pe server pot fi inspectate la: http://127.0.0.1:5001/inspect/barbershops
+
+    Frontend-ul va fi implementat in Android, asa ca pentru a putea fi testat am facut cateva
+cereri intr-o colectie Postman.
+    Server-ul nu este complet inca, dar in total sunt 4 servicii luand in considerare bazele de date,
+deci ar trebui sa fie ok.
+
+REGISTER -> creaza intrari in bazele de date ale ambelor servicii si returneaza token-urile de access si de refresh
+LOGIN -> self explanatory, returneaza cele 2 tokene
+TOKEN REFRESH -> genereaza un nou token de access pe baza celui de refresh, token-ul de access expira in 15 min
+LOGAOUT ACCESS si LOGOUT REFRESH -> pune cele 2 tokene in blacklist
+
+Restul functiilor au nevoie de token-ul de access in tabul de autorizare(Bearer Token)
+GET USER -> intoarce datele despre utilizator
+DELETE USER -> sterge datele utilizatorului din ambele baze de date si invalideaza token-ul
+SEARCH * -> cauta date pe baza unor criterii

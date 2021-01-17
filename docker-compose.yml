@@ -1,0 +1,59 @@
+version: "3.7"
+services:
+  dbserver:
+    image: mysql:5.7
+    container_name: dbserver
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - internal
+
+  server:
+    build: ./server
+    container_name: server
+    ports:
+      - 5001:5000
+    depends_on:
+      - dbserver
+    networks:
+      - internal
+
+  dbauth:
+    image: mysql:5.7
+    container_name: dbauth
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - internal
+
+  auth:
+    build: ./auth
+    container_name: auth
+    ports:
+      - 5000:5000
+    depends_on:
+      - dbauth
+      - server
+    networks:
+      - internal
+
+  kong:
+    image: kong:latest
+    volumes:
+      - ./kong:/usr/local/kong/declarative
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - 8001:8000
+      - 8444:8443
+    networks:
+      - internal
+
+networks:
+  internal:

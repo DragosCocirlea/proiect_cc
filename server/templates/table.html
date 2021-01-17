@@ -1,0 +1,28 @@
+<form>
+    <button formaction="http://127.0.0.1:5001/inspect/users">Users</button>
+    <button formaction="http://127.0.0.1:5001/inspect/barbershops">Barbershops</button>
+    <button formaction="http://127.0.0.1:5001/inspect/barbers">Barbers</button>
+    <button formaction="http://127.0.0.1:5001/inspect/services">Services</button>
+    <button formaction="http://127.0.0.1:5001/inspect/appointments">Appointments</button>
+  </form>
+<table border="1">
+    <thead>
+        <tr>
+            <th colspan = {{ size }}>{{ tablename }}</th>
+        </tr>
+        <tr>
+            {% for col in colnames %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            {% for col in record %}
+            <td>{{ col }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+_format_version: "2.1"
+
+services:
+  - name: auth
+    url: http://auth:5000/
+    routes:
+      - name: auth_root
+        paths:
+          - /auth
+
+  - name: server
+    url: http://server:5000/
+    routes:
+      - name: server_root
+        paths:
+          - /figaro
+
+  # - name: db-adminer
+  #   url: http://lab4-cluster_adminer:8080
+  #   routes:
+  #     - name: adminer-service
+  #       paths:
+  #         - /adminer

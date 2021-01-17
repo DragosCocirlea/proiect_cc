@@ -1,0 +1,6 @@
+flask-restful
+flask-jwt-extended
+flask-sqlalchemy
+mysqlclient
+passlib
+requests

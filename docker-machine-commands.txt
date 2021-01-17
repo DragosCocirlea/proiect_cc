@@ -1,0 +1,14 @@
+docker-machine create --driver amazonec2 --amazonec2-region eu-central-1 --amazonec2-open-port 5000 --amazonec2-open-port 5001 --amazonec2-open-port 9090 --amazonec2-open-port 2377 --amazonec2-access-key KEY1 --amazonec2-secret-key KEY2 figaro-machine1
+docker-machine create --driver amazonec2 --amazonec2-region eu-central-1 --amazonec2-open-port 5000 --amazonec2-open-port 5001 --amazonec2-open-port 9090 --amazonec2-open-port 2377 --amazonec2-access-key KEY1 --amazonec2-secret-key KEY2 figaro-machine2
+
+docker-machine ssh figaro-machine1
+    sudo docker swarm init -> docker swarm join ...
+
+docker-machine ssh figaro-machine2
+    sudo docker swarm join ...
+
+docker-machine scp docker-stack.yml figaro-machine1:.
+docker-machine scp -r prometheus figaro-machine1:.
+
+docker-machine ssh figaro-machine1
+    sudo docker stack deploy -c docker-stack.yml figaro
